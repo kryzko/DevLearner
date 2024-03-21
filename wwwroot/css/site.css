@@ -59,4 +59,11 @@ body {
     margin: 0px;
     background-color: transparent;
 }
-
+.svg-button {
+    background-image: url('data:image/svg+xml;utf8,<svg id="svgElement1" width="254" height="174" viewBox="0 0 254 174" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M92.4386 8.22438C125.878 17.6373 137.748 17.92 166.883 9.99554C210.143 -1.76426 259.178 18.3092 253.248 72.4617C248.685 114.11 219.274 155.995 186.647 167.31C131.705 186.365 54.5805 162.037 19.6709 115.482C-10.4268 75.35 -4.44466 24.4692 32.6603 4.99494C45.245 -1.61026 60.4104 -0.792213 92.4386 8.22438Z" fill="#50B0A1" /></svg>');
+    background-size: cover;
+    width: 254px; /* Ширина SVG */
+    height: 174px; /* Высота SVG */
+    border: none; /* Удаление границы кнопки */
+    cursor: pointer; /* Изменение курсора на указатель */
+}

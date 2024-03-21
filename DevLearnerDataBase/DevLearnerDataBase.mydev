@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), the Project File -->
+<!-- Modifying this generated file will probably render it invalid -->
+<DatabaseProject Version="1.0.2" Guid="59f90733-4d68-4fdf-82a7-f0fcbf5460aa">
+  <Provider Guid="59f90733-4d68-4fdf-82a7-f0fcbf5460aa" />
+  <Configurations Active="Default">
+    <Configuration Name="Default" CheckReferences="True" IgnoreErrors="False" OutputPath="" Target="" OutputType="SingleFile" RecreateObjects="False" RecreateDatabase="False" ServerVersion="10.4.32" Database="" UseRegions="False" FullPaths="False" AnalyzePreAndPostDeploymentFilesAttribute="False" Definer="CURRENT_USER" ScriptDelimiter="$$" AddIfNotExists="False" StorageEngine="INNODB" Collation="utf8mb4_general_ci" ConvertToLowercase="True" DefinerEffect="Keep" InnoDbDefaultRowFormat="dynamic" ServerTypeAttribute="MariaDb">
+      <ConnectionModel>
+        <PropertyValue Name="Database">59f90733-4d68-4fdf-82a7-f0fcbf5460aa</PropertyValue>
+        <PropertyValue Name="Id">2222a6ca-9f7a-4375-b132-0e122cf95fd6</PropertyValue>
+        <PropertyValue Name="ConnectionString" xml:space="preserve">User Id=root;Host=localhost;Character Set=utf8</PropertyValue>
+      </ConnectionModel>
+      <Build />
+    </Configuration>
+  </Configurations>
+</DatabaseProject>

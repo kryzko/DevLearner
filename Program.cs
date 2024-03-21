@@ -1,13 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+
 namespace DevLearner
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            string connectionString = builder.Configuration.GetConnectionString(
+                "Server=(localdb)\\mssqllocaldb;Database=devlearner;Trusted_Connection=True;MultipleActiveResultSets=true"
+                );
+
+            builder.Services.AddDbContext<MyDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
 
             var app = builder.Build();
 

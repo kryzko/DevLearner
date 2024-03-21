@@ -58,25 +58,29 @@
     <svg id="svgElement1" style="margin-top: 200px; margin-left: 400px" width="254" height="174" viewBox="0 0 254 174" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M92.4386 8.22438C125.878 17.6373 137.748 17.92 166.883 9.99554C210.143 -1.76426 259.178 18.3092 253.248 72.4617C248.685 114.11 219.274 155.995 186.647 167.31C131.705 186.365 54.5805 162.037 19.6709 115.482C-10.4268 75.35 -4.44466 24.4692 32.6603 4.99494C45.245 -1.61026 60.4104 -0.792213 92.4386 8.22438Z" fill="#50B0A1" />
     </svg>
+    <button class="svg-button">Нажми меня</button>
+
+
 
     <svg style="position: absolute; left: 45%; top: 670px;" width="142" height="95" viewBox="0 0 162 115" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M111.538 74.8137L0.419722 24.899L10.9497 1.45767L122.068 51.3723L106.16 9.51618L130.181 0.386435L161.675 83.2495L78.8115 114.743L69.6817 90.7219L111.538 74.8137Z" fill="#F2C94C" />
     </svg>
+    <form method="post" asp-action="Create">
+        <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 467px; left: 15px;">
+            <input type="email" class="form-control border-0" id="floatingEmail" placeholder="name@example.com" style="background-color: transparent; color: white;">
+            <label for="floatingEmail" style="background-color: transparent;">Email address</label>
+        </div>
 
-    <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 467px; left: 15px;">
-        <input type="email" class="form-control border-0" id="floatingEmail" placeholder="name@example.com" style="background-color: transparent; color: white;">
-        <label for="floatingEmail" style="background-color: transparent;">Email address</label>
-    </div>
-
-    <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 467px; left: 665px;">
-        <input type="password" class="form-control border-0" id="floatingPassword" placeholder="password" style="background-color: transparent; color: white;">
-        <label for="floatingPassword" style="background-color: transparent;">Password</label>
-    </div>
+        <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 467px; left: 665px;">
+            <input type="password" class="form-control border-0" id="floatingPassword" placeholder="password" style="background-color: transparent; color: white;">
+            <label for="floatingPassword" style="background-color: transparent;">Password</label>
+        </div>
     
-    <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 760px; left: 15px;">
-        <input type="password" class="form-control border-0" id="floatingUsername" placeholder="password" style="background-color: transparent; color: white;">
-        <label for="floatingUsername" style="background-color: transparent;">Username</label>
-    </div>
+        <div class="form-floating mb-3 position-absolute" style="width: 430px; top: 760px; left: 15px;">
+            <input type="password" class="form-control border-0" id="floatingUsername" placeholder="password" style="background-color: transparent; color: white;">
+            <label for="floatingUsername" style="background-color: transparent;">Username</label>
+        </div>
+    </form>
 
 
     <p id="sendParagraph" style="position: absolute; top: 850px; left: 920px; font-size: 32px;">Отправить</p>
