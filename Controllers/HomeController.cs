@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DevLearner
+namespace DevLearner.Controllers
 {
     public class HomeController : Controller
     {
