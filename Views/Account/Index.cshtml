@@ -3,4 +3,41 @@
 *@
 @{
 }
-<h1>Сайт аккаунта</h1>
+<style>
+    .text-start p {
+        font-family: 'Jura', sans-serif ;
+        color: white ;
+        font-size: 80px ;
+        margin: 0px ;
+        position: absolute;
+    }
+
+    .svg-button {
+        background-size: cover;
+        background-color: transparent;
+        width: 296px; /* Ширина SVG */
+        height: 304px; /* Высота SVG */
+        border: none; /* Удаление границы кнопки */
+        cursor: pointer; /* Изменение курсора на указатель */
+        font-size: 80px;
+    }
+
+</style>
+
+<div class="text-start">
+    
+    <button onclick="window.location.href = 'https://localhost:7233/Account/CSharpProgramming' " class="svg-button button-text" style="position:absolute; background-image: url('../CSharp.svg');">
+    C#
+    </button>
+
+    <button onclick="window.location.href = 'https://localhost:7233/Account/PythonProgramming' " class="svg-button button-text" style="background-image: url('../Python.svg'); float:right">
+    Python
+    </button>
+    
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <button onclick="window.location.href = 'https://localhost:7233/Courses' " class="svg-button button-text" style="background-image: url('../Courses.svg'); margin-top: 400px;">
+    Курсы
+    </button>
+</div>

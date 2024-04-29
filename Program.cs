@@ -1,5 +1,7 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using System.Data;
 
 namespace DevLearner
 {
@@ -12,12 +14,16 @@ namespace DevLearner
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            string connectionString = builder.Configuration.GetConnectionString(
-                "Server=(localdb)\\mssqllocaldb;Database=devlearner;Trusted_Connection=True;MultipleActiveResultSets=true"
-                );
-
+            //string connectionString = builder.Configuration.GetConnectionString(
+            //    "Server=(localdb)\\mssqllocaldb;Database=devlearner;Trusted_Connection=True;MultipleActiveResultSets=true"
+            //    );
             builder.Services.AddDbContext<MyDbContext>(options =>
-                options.UseSqlServer(connectionString));
+    options.UseMySql(builder.Configuration.GetConnectionString("DefautConnection"),
+        new MySqlServerVersion(new Version(8, 0, 21))));
+            //Console.WriteLine(DBConnectionStatus(connectionString)? "Ура" : "Не ура");
+
+            //builder.Services.AddDbContext<MyDbContext>(options =>
+            //    options.UseSqlServer(connectionString));
 
 
             var app = builder.Build();
@@ -43,5 +49,25 @@ namespace DevLearner
 
             app.Run();
         }
+        private static bool DBConnectionStatus(string connectionString)
+        {
+            try
+            {
+                using (SqlConnection sqlConn = new SqlConnection(connectionString))
+                {
+                    sqlConn.Open();
+                    return (sqlConn.State == ConnectionState.Open);
+                }
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

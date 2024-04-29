@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    .text-start p {
+        font-family: 'Jura', sans-serif;
+        color: white;
+        font-size: 80px;
+        margin: 0px;
+        position: absolute;
+    }
+
+    .svg-button {
+        background-size: cover;
+        background-color: transparent;
+        width: 427px; /* Ширина SVG */
+        height: 247px; /* Высота SVG */
+        border: none; /* Удаление границы кнопки */
+        cursor: pointer; /* Изменение курсора на указатель */
+        font-size: 80px;
+    }
+
+
+
+</style>
+
+<div style="margin-top:30px;">
+
+    <button onclick="window.location.href = 'https://localhost:7233/Courses/CSharp' " class="svg-button button-text" style="background-image: url('../CSharpCourses.svg'); width: 431px; height: 236px;">
+        Курсы по c#
+    </button>
+
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <button onclick="window.location.href = 'https://localhost:7233/Courses/Python' " class="svg-button button-text" style="background-image: url('../PythonCourses.svg'); ">
+        Курсы по Python
+    </button>
+</div>
+
+<div style="float: right; margin-bottom: 30px;">
+    <button onclick="window.location.href = 'https://localhost:7233/Courses/CPlusPlus' " class="svg-button button-text" style="background-image: url('../CPlusPlusCourses.svg'); ">
+        Курсы по C++
+    </button>
+</div>
+

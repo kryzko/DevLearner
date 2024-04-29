@@ -88,9 +88,62 @@
         adjustLabelSizeOnFocus('floatingUsername', 'label[for="floatingUsername"]');
 
 
-        // Обработчик события для SVG
-        document.getElementById('svgElement1').addEventListener('click', function () {
-            window.location.href = 'Account';
+        // Обработчик валидации полей
+        document.getElementById('svgElement1').addEventListener('click', function (event) {
+        event.preventDefault(); //Предотвращаем отправку формы
+
+        var email = document.getElementById('floatingEmail').value;
+        var password = document.getElementById('floatingPassword').value;
+        var username = document.getElementById('floatingUsername').value;
+
+        //Проверка email
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            alert('Введите корректный email');
+            return;
+        }
+
+        //Проверка пароля
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert('Пароль должен содержать буквы и цифры, быть не менее 8 символов');
+            return;
+        }
+
+        //Проверка имени пользователя
+        if (username.trim() === '') {
+            alert('Имя пользователя не должно быть пустым');
+            return;
+        }
+
+            // Если все проверки прошли успешно, отправляем данные на сервер
+            var userData = {
+                Email: email,
+                Password: password,
+                Name: username
+            };
+
+            fetch('https://localhost:7233/Home/Create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/Account';
+                    } else {
+                        alert('Ошибка при сохранении данных');
+                    }
+                })
+                ;
+
+        //Если все проверки прошли успешно, переходим на страницу Account
+            // Если все проверки прошли успешно, отправляем форму
+            document.querySelector('form').submit();
+        //window.location.href = 'Account';
         });
 
     </script>
