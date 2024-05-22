@@ -31,19 +31,46 @@
             border: 1px solid #333; /* Тёмная граница при фокусе */
         }
 
+    p {
+        font-family: 'Jura', sans-serif;
+        color: white;
+        font-size: 38px;
+        margin: 0px;
+    }
+
+
 </style>
 
 @{
     var questions = ViewBag.Questions as QuestionsModel[];
+    int counterOfCuestions = 0;
 }
 
-@foreach (var question in questions)
+@* @foreach (var question in questions)
 {
     <p>@question.QuestionText</p>
-    <p>@question.CorrectAnswer</p>
-}
+    <p style="color:mediumspringgreen">@question.CorrectAnswer</p>
+} *@
+@* @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+{
+    @Html.TextBox("Name")
+    <input type="submit" value="Save" />
+} *@
 <body>
+    <!-- Блок для отображения текущего вопроса -->
+    <div id="currentQuestion" style="display:block;">
+        <!-- Здесь будет отображаться текущий вопрос -->
+        <p>@questions.First().QuestionText</p>
+        <p style="color:mediumspringgreen;">@questions.First().CorrectAnswer</p>
+    </div>
+
+    <!-- Блок для отображения следующего вопроса -->
+    <div id="nextQuestion" >
+        <!-- Здесь будет отображаться следующий вопрос -->
+    </div>
+
     <div id="editor"></div>
+    <button id="checkAnswer">Проверить ответ</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/clike/clike.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/addon/edit/matchbrackets.min.js"></script>
@@ -65,6 +92,59 @@
             matchBrackets: true,
             styleActiveLine: true,
             extraKeys: { "Ctrl-Space": "autocomplete" }
+        });
+
+        document.getElementById('checkAnswer').addEventListener('click', function () {
+            var answer = editor.getValue(); // Получаем текст из редактора
+            console.log(answer);
+
+            fetch('/Account/CheckAnswer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify( answer),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isCorrect) {
+                        alert('Ответ верный!');
+                        editor.setValue(''); // Очищаем редактор
+                        // Здесь можно добавить логику для отображения следующего вопроса
+                        // После успешной проверки ответа
+                        fetch('/Account/GetNextQuestion', {
+                            method: 'GET',
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Здесь вы можете обновить интерфейс с новым вопросом
+                                // Например, обновить текст вопроса и правильного ответа
+
+                                // Проверяем, является ли полученный вопрос последним
+                                if (!data.questionText.startsWith("Все вопросы были отвечены")) {
+                                    // Очищаем блок текущего вопроса
+                                    document.getElementById("currentQuestion").innerHTML = '';
+                                    // Заполняем блок следующего вопроса новыми данными
+                                    document.getElementById("nextQuestion").innerHTML = `
+                                        <p>${data.questionText}</p>
+                                        <p style="color:mediumspringgreen;">${data.correctAnswer} </p>`;
+                                } else {
+                                    // Если все вопросы были отвечены, можем показать сообщение или выполнить другие действия
+                                    alert('Вы ответили на все вопросы!');
+                                    window.location.href = '/Account/Index';
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Ошибка:', error);
+                            });
+
+                        } else {
+                        alert('Ответ неверный. Попробуйте еще раз.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Ошибка:', error);
+                });
         });
 
     </script>
