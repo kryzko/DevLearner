@@ -1,3 +1,4 @@
+using DevLearner.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
@@ -25,7 +26,7 @@ namespace DevLearner
             //builder.Services.AddDbContext<MyDbContext>(options =>
             //    options.UseSqlServer(connectionString));
 
-
+            builder.Services.AddSingleton(new EmailService("localhost", 465, "kryzko0@yandex.by", "Kr5st9k2006"));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

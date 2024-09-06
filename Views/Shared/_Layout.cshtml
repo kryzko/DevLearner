@@ -32,15 +32,17 @@
                         </filter>
                     </defs>
                 </svg>
-                <a class="navbar-brand d-flex justify-content-end" asp-area="" asp-controller="Home" asp-action="Index">   DevLearner</a>
+                <a class="navbar-brand d-flex justify-content-end p-1" asp-area="" asp-controller="Home" asp-action="Index">   DevLearner</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
                     <ul class="navbar-nav flex-grow-1 d-flex justify-content-end">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
-                        <li class="nav-item end-0">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Конфиденциальность</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Авторские права</a>
                         </li>
+
+                        <button class="btn btn-outline-light " onclick="toggleTheme()">Переключить тему</button>
                     </ul>
                 </div>
             </div>
@@ -63,6 +65,9 @@
         document.getElementById('svgElement').addEventListener('click', function () {
             window.location.href = '#bottom';
         });
+
+        
+
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

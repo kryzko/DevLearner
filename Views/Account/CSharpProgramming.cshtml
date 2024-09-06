@@ -1,6 +1,7 @@
 ﻿@model QuestionsModel[]
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/theme/monokai.min.css" />
+<script src="/path/to/global.js"></script>
 
 <style>
     
@@ -61,7 +62,7 @@
     <div id="currentQuestion" style="display:block;">
         <!-- Здесь будет отображаться текущий вопрос -->
         <p>@questions.First().QuestionText</p>
-        <p style="color:mediumspringgreen;">@questions.First().CorrectAnswer</p>
+        <p id="textAnswer" style="color:mediumspringgreen; display:none;">@questions.First().CorrectAnswer</p>
     </div>
 
     <!-- Блок для отображения следующего вопроса -->
@@ -69,8 +70,16 @@
         <!-- Здесь будет отображаться следующий вопрос -->
     </div>
 
+    <div class="d-grid gap-2 col-6 mx-auto p-5">
+        <button type="button" class="btn btn-lg btn-outline-light" id="seeAnswer">Узнать ответ</button>
+    </div>
+
     <div id="editor"></div>
-    <button id="checkAnswer">Проверить ответ</button>
+
+    <div class="d-grid gap-2 col-6 mx-auto p-5">
+        <button id="checkAnswer" class="btn btn-lg btn-outline-light bg-success border-0 ">Проверить ответ</button>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/clike/clike.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/addon/edit/matchbrackets.min.js"></script>
@@ -93,6 +102,26 @@
             styleActiveLine: true,
             extraKeys: { "Ctrl-Space": "autocomplete" }
         });
+
+        let buttonText = "Скрыть ответ"; // Изначальное состояние текста кнопки
+
+        document.getElementById('seeAnswer').addEventListener('click', function () {
+            let textAnswerElement = document.getElementById('textAnswer');
+            let currentDisplayStyle = textAnswerElement.style.display;
+
+            // Проверяем текущее состояние отображения элемента
+            if (currentDisplayStyle === "none") {
+                // Если элемент скрыт, показываем его и меняем текст кнопки
+                textAnswerElement.style.display = "block";
+                this.textContent = "Скрыть ответ";
+            } else {
+                // Если элемент виден, скрываем его и меняем текст кнопки
+                textAnswerElement.style.display = "none";
+                this.textContent = "Показать ответ";
+            }
+        });
+
+
 
         document.getElementById('checkAnswer').addEventListener('click', function () {
             var answer = editor.getValue(); // Получаем текст из редактора
@@ -127,7 +156,7 @@
                                     // Заполняем блок следующего вопроса новыми данными
                                     document.getElementById("nextQuestion").innerHTML = `
                                         <p>${data.questionText}</p>
-                                        <p style="color:mediumspringgreen;">${data.correctAnswer} </p>`;
+                                                <p id="textAnswer" style="color:#00fa9a; display:none;">${data.correctAnswer} </p>`;
                                 } else {
                                     // Если все вопросы были отвечены, можем показать сообщение или выполнить другие действия
                                     alert('Вы ответили на все вопросы!');

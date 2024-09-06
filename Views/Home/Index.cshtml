@@ -1,6 +1,9 @@
-﻿@{
+﻿@using MailKit.Net.Smtp;
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<script src="/path/to/global.js"></script>
 
 <div class="text-start text-white" style="position: relative">
     <div style=" width: 613px; height: 527px;">
@@ -46,17 +49,22 @@
         <path d="M111.538 74.8137L0.419722 24.899L10.9497 1.45767L122.068 51.3723L106.16 9.51618L130.181 0.386435L161.675 83.2495L78.8115 114.743L69.6817 90.7219L111.538 74.8137Z" fill="#F2C94C" />
     </svg>
     <form method="post" asp-action="Create">
-        <div class="form-floating mb-3 position-absolute label-background" style="width: 475px; top: 467px; left: 15px;">
+        <div class="form-floating mb-3 position-absolute label-background" style="width: 475px; top: 467px; left: 100px;">
             <input type="email" class="form-control border-0 text-white" id="floatingEmail" placeholder="name@example.com">
             <label for="floatingEmail" >Email address</label>
         </div>
 
-        <div class="form-floating mb-3 position-absolute label-background" style="width: 475px; top: 467px; left: 665px;">
+        <div class="form-floating mb-3 position-absolute label-background" style="width: 475px; top: 440px; left: 665px;">
             <input type="password" class="form-control border-0 text-white" id="floatingPassword" placeholder="password">
             <label for="floatingPassword" >Password</label>
         </div>
-    
-        <div class="form-floating mb-3 position-absolute label-background " style="width: 475px; top: 760px; left: 15px;">
+
+        <div class="form-floating mb-3 position-absolute label-background" style="width: 475px; top: 620px; left: 865px;">
+            <input type="password" class="form-control border-0 text-white" id="floatingPassword2" placeholder="password">
+            <label for="floatingPassword2">Password</label>
+        </div>
+
+        <div class="form-floating mb-3 position-absolute label-background " style="width: 475px; top: 700px; left: 15px;">
             <input type="text" class="form-control border-0 text-white" id="floatingUsername" placeholder="password">
             <label for="floatingUsername" >Username</label>
         </div>
@@ -64,7 +72,7 @@
     </form>
 
 
-    <button id="svgElement1" class="svg-button button-text " style=" margin-top: 350px; margin-left: 920px; font-size: 32px;">Отправить</button>
+    <button id="svgElement1" class="svg-button button-text " style=" margin-top: 350px; margin-left: 700px; font-size: 32px;">Отправить</button>
 
     <script>
         function adjustLabelSizeOnFocus(inputId, labelSelector) {
@@ -85,6 +93,7 @@
         // Вызов функции для каждого поля ввода
         adjustLabelSizeOnFocus('floatingEmail', 'label[for="floatingEmail"]');
         adjustLabelSizeOnFocus('floatingPassword', 'label[for="floatingPassword"]');
+        adjustLabelSizeOnFocus('floatingPassword2', 'label[for="floatingPassword2"]');
         adjustLabelSizeOnFocus('floatingUsername', 'label[for="floatingUsername"]');
 
 
@@ -93,7 +102,8 @@
         event.preventDefault(); //Предотвращаем отправку формы
 
         var email = document.getElementById('floatingEmail').value;
-        var password = document.getElementById('floatingPassword').value;
+            var password = document.getElementById('floatingPassword').value;
+            var secondPassword = document.getElementById('floatingPassword2').value;
         var username = document.getElementById('floatingUsername').value;
 
         //Проверка email
@@ -109,6 +119,11 @@
             alert('Пароль должен содержать буквы и цифры, быть не менее 8 символов');
             return;
         }
+
+            if (password != secondPassword) {
+                alert('Пароли должны сопадать!');
+                return;
+            }
 
         //Проверка имени пользователя
         if (username.trim() === '') {
@@ -147,7 +162,6 @@
         });
 
     </script>
-
 
     <br /><br /><br />
 </div>
